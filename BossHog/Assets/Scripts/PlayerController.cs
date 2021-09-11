@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //public float rotationLimit = 20;
+    //public float rotationSpeed;
     public float speed;
-    public float rotationSpeed;
     public float verticalInput;
     public float horizontalInput;
-    public float rotationLimit = 20;
+
+    private float horizontalBound = 18;
+    private float bottomBound = 3;
+    private float topBound = -11;
+ 
 
   
 
@@ -20,27 +25,55 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // get the user's vertical input
+        #region Player movement
+        // Get the user's vertical input
         verticalInput = Input.GetAxis("Vertical");
-
-        // get the user's horizontal input
+        // Get the user's horizontal input
         horizontalInput = Input.GetAxis("Horizontal");
 
-        transform.Translate(Vector3.right * speed * -horizontalInput * Time.deltaTime);
-        transform.Translate(Vector3.forward * speed * -verticalInput * Time.deltaTime);
+        // Left/Right movement
+        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        // Forward/Back movement
+        transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
 
-       /* // tilt character
-        transform.Rotate(Vector3.forward * horizontalInput * rotationSpeed * Time.deltaTime);
+        /* // tilt character
+         transform.Rotate(Vector3.forward * horizontalInput * rotationSpeed * Time.deltaTime);
 
-        if (transform.rotation.z > rotationLimit)
+         if (transform.rotation.z > rotationLimit)
+         {
+             transform.rotation = new Quaternion(0, 0, 0, 0);
+         }
+
+         if (transform.rotation.z < -rotationLimit)
+         {
+             transform.rotation = new Quaternion(0, 0, 0, 0);
+         }
+        */
+        #endregion
+
+        #region Prevent player from leaving camera view
+        // Left wall
+        if (transform.position.x > horizontalBound)
         {
-            transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.position = new Vector3(horizontalBound, transform.position.y, transform.position.z);
         }
-
-        if (transform.rotation.z < -rotationLimit)
+        // Rigth wall
+        if (transform.position.x < -horizontalBound)
         {
-            transform.rotation = new Quaternion(0, 0, 0, 0);
+            transform.position = new Vector3(-horizontalBound, transform.position.y, transform.position.z);
         }
-       */
+        // Bottom wall
+        if (transform.position.z > bottomBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, bottomBound);
+        }
+        // Top wall
+        if (transform.position.z < topBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, topBound);
+        }
+        #endregion
+
+        
     }
 }
