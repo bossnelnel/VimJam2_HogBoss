@@ -7,12 +7,24 @@ public class PlayerController : MonoBehaviour
     //public float rotationLimit = 20;
     //public float rotationSpeed;
     public float speed;
-    public float verticalInput;
-    public float horizontalInput;
+    private float verticalInput;
+    private float horizontalInput;
+    public float rotationSpeed = 5;
 
-    private float horizontalBound = 18;
+    private float horizFireInput;
+    private float vertFireInput;
+
+    public float HspeedVal;
+
+    private float horizontalBound = 10;
     private float bottomBound = 3;
-    private float topBound = -11;
+    private float topBound = -8;
+
+    public float reloadTime = 100;
+    private float loadTimer = 101;
+
+    public GameObject bulletType;
+    //private float rotationLimit = 30;
  
 
   
@@ -20,7 +32,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -33,22 +45,12 @@ public class PlayerController : MonoBehaviour
 
         // Left/Right movement
         transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        HspeedVal = speed * horizontalInput * Time.deltaTime;
+        //Debug.Log(HspeedVal);
         // Forward/Back movement
         transform.Translate(Vector3.forward * speed * verticalInput * Time.deltaTime);
 
-        /* // tilt character
-         transform.Rotate(Vector3.forward * horizontalInput * rotationSpeed * Time.deltaTime);
-
-         if (transform.rotation.z > rotationLimit)
-         {
-             transform.rotation = new Quaternion(0, 0, 0, 0);
-         }
-
-         if (transform.rotation.z < -rotationLimit)
-         {
-             transform.rotation = new Quaternion(0, 0, 0, 0);
-         }
-        */
+        
         #endregion
 
         #region Prevent player from leaving camera view
@@ -74,6 +76,20 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        
+        #region Firing a bullet
+        horizFireInput = Input.GetAxis("Fire1");
+        vertFireInput = Input.GetAxis("Fire2");
+
+        if(horizFireInput != 0 && loadTimer > reloadTime)
+        {
+            Vector3 pos = transform.position;
+            Quaternion rot = Quaternion.Euler(0.0f, 90.0f * horizFireInput, 0.0f);
+            Instantiate(bulletType, pos, rot);
+            loadTimer = 0;
+        } else if(loadTimer <= reloadTime)
+        {
+            loadTimer++;
+        }
+        #endregion
     }
 }
