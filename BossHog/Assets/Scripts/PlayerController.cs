@@ -16,9 +16,10 @@ public class PlayerController : MonoBehaviour
 
     public float HspeedVal;
 
-    private float horizontalBound = 10;
-    private float bottomBound = 3;
-    private float topBound = -8;
+    private float rightBound = -6;
+    private float leftBound = 5;
+    private float bottomBound = 2;
+    private float topBound = -11;
 
     public float reloadTime = 100;
     private float loadTimer = 101;
@@ -54,15 +55,15 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Prevent player from leaving camera view
-        // Left wall
-        if (transform.position.x > horizontalBound)
+        // Right wall
+        if (transform.position.x < rightBound)
         {
-            transform.position = new Vector3(horizontalBound, transform.position.y, transform.position.z);
+            transform.position = new Vector3(rightBound, transform.position.y, transform.position.z);
         }
-        // Rigth wall
-        if (transform.position.x < -horizontalBound)
+        // Left wall
+        if (transform.position.x > leftBound)
         {
-            transform.position = new Vector3(-horizontalBound, transform.position.y, transform.position.z);
+            transform.position = new Vector3(leftBound, transform.position.y, transform.position.z);
         }
         // Bottom wall
         if (transform.position.z > bottomBound)
