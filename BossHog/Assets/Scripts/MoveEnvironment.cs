@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveEnvironment : MonoBehaviour
 {
     public float speed;
-    private float loopZ = 14;
+    private float loopZ = 16;
 
     private Vector3 startPosition;
 
