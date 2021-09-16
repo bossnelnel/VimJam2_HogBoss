@@ -81,6 +81,31 @@ public class PlayerController : MonoBehaviour
         horizFireInput = Input.GetAxis("Fire1");
         vertFireInput = Input.GetAxis("Fire2");
 
+        if(horizFireInput != 0 || vertFireInput != 0)
+        {
+            if(loadTimer > reloadTime)
+            {
+                Vector3 pos = transform.position;
+                Quaternion rot = Quaternion.identity;
+                if(Mathf.Abs(horizFireInput) == vertFireInput)
+                {
+                    rot = Quaternion.Euler(0.0f, 135.0f * horizFireInput, 0.0f);
+                } else if(Mathf.Abs(horizFireInput) == 1)
+                {
+                    rot = Quaternion.Euler(0.0f, 90.0f * horizFireInput, 0.0f);
+                } else
+                {
+                    rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
+                }
+                Instantiate(bulletType, pos, rot);
+                loadTimer = 0;
+            } else if(loadTimer <= reloadTime)
+            {
+                loadTimer++;
+            }
+        }
+
+        /*
         if(horizFireInput != 0 && loadTimer > reloadTime)
         {
             Vector3 pos = transform.position;
@@ -91,6 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             loadTimer++;
         }
+        */
         #endregion
     }
 }
