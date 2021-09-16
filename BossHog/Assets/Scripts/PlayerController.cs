@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public float HspeedVal;
 
-    private float rightBound = -6;
-    private float leftBound = 5;
+    private float rightBound = -10;
+    private float leftBound = 10;
     private float bottomBound = 2;
     private float topBound = -11;
 
@@ -40,12 +40,12 @@ public class PlayerController : MonoBehaviour
     {
         #region Player movement
         // Get the user's vertical input
-        verticalInput = Input.GetAxis("Vertical");
+        verticalInput = Input.GetAxis("Horizontal");
         // Get the user's horizontal input
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Vertical");
 
         // Left/Right movement
-        transform.Translate(Vector3.right * speed * horizontalInput * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * -horizontalInput * Time.deltaTime);
         HspeedVal = speed * horizontalInput * Time.deltaTime;
         //Debug.Log(HspeedVal);
         // Forward/Back movement
