@@ -983,7 +983,7 @@ MonoBehaviour:
   maxTurn: 20
   turnSpeed: 4
   reloadTime: 20
-  bulletType: {fileID: 7978163014351337664, guid: 017f11584b9c88d499629f0df28af52a, type: 3}
+  bulletType: {fileID: 6945254898979015577, guid: 51cc1cf4b625ae548aae711a0ab2271d, type: 3}
 --- !u!54 &1218267103
 Rigidbody:
   m_ObjectHideFlags: 0

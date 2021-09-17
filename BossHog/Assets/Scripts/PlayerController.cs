@@ -4,35 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //public float rotationLimit = 20;
-    //public float rotationSpeed;
+    #region variable List
+
+    // Defines speed of the player
     public float speed;
+
+    // Stores inputs of the player
     private float verticalInput;
     private float horizontalInput;
-    public float rotationSpeed = 5;
 
     private float horizFireInput;
     private float vertFireInput;
 
-    public float HspeedVal;
-
+    // Defines the [visual] speed and max angle of the motorcycle when moving left or right
     public float maxTurn;
     public float turnSpeed;
     private float turnCurrent;
 
+    // Defines the boundaries of the map that the player can move in
     private float rightBound = -10;
     private float leftBound = 10;
     private float bottomBound = 2;
     private float topBound = -11;
 
+    // Defines how often the player can shoot (reloadTime)
     public float reloadTime = 100;
     private float loadTimer = 101;
 
+    // Defines what type of bullet the player will fire
     public GameObject bulletType;
 
+    // Used to hold the motorcycle and head of the pig to animate
     private GameObject headMesh;
     private GameObject motorcycleMesh;
-    //private float rotationLimit = 30;
+
+    #endregion
 
     void Start()
     {
@@ -68,12 +74,14 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        #region Animation Test
+        #region Animation
 
         #region Head
 
+        // Calculates what the rotation of the player's head should be
         float headRotationTarget = (-horizFireInput * 90.0f) + (45.0f * vertFireInput * Mathf.Sign(horizFireInput) * Mathf.Abs(horizFireInput));
 
+        // Applies the rotation to the player's head
         headMesh.transform.rotation = Quaternion.Euler(0.0f, 180 + headRotationTarget, 0.0f);
 
         #endregion
@@ -100,45 +108,49 @@ public class PlayerController : MonoBehaviour
 
         #region Firing a bullet
 
+        // Checks if the gun is fully reloaded
         if (loadTimer > reloadTime)
         {
+            // If the player is pressing either of the fire buttons, attempt to shoot
             if (horizFireInput != 0 || vertFireInput != 0)
             {
+                // Store the rotation and the position of the player
                 Vector3 pos = transform.position;
                 Quaternion rot = Quaternion.identity;
+
+                // If both fire buttons are pressed, create a bullet that moves at a 45 degree angle
                 if (Mathf.Abs(horizFireInput) == vertFireInput)
                 {
+                    // Sets the rotation of the bullet
                     rot = Quaternion.Euler(0.0f, 135.0f * horizFireInput, 0.0f);
                 }
+                // If only the horizontal fire button is pressed, create a bullet that moves at a 90 degree angle
                 else if (Mathf.Abs(horizFireInput) == 1)
                 {
+                    // Sets the rotation of the bullet
                     rot = Quaternion.Euler(0.0f, 90.0f * horizFireInput, 0.0f);
                 }
+                // If only the vertical fire button is being pressed, create a bullet that moves foward
                 else
                 {
+                    // Sets the rotation of the bullet
                     rot = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 }
+
+                // Create a bullet at the current positon with the new rotation value
                 Instantiate(bulletType, pos, rot);
+
+                //Set the reload timer back to zero to count back up from
                 loadTimer = 0;
             }
         }
+        // If the gun is not fully reloaded, count down from the reload timer
         else
         {
+            // Add to the reload timer
             loadTimer++;
         }
 
-        /*
-        if(horizFireInput != 0 && loadTimer > reloadTime)
-        {
-            Vector3 pos = transform.position;
-            Quaternion rot = Quaternion.Euler(0.0f, 90.0f * horizFireInput, 0.0f);
-            Instantiate(bulletType, pos, rot);
-            loadTimer = 0;
-        } else if(loadTimer <= reloadTime)
-        {
-            loadTimer++;
-        }
-        */
         #endregion
     }
 }
