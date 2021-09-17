@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossHogScene.unity
     guid: febcf6272c174364ab57ac0f083e89d9
+  - enabled: 1
+    path: Assets/Scenes/ControlsMenu.unity
+    guid: afa913aadd47e0f498e3a3d01a7e9b4f
   m_configObjects: {}

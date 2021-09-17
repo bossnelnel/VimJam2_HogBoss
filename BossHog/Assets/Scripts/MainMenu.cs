@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public string LoadScene;
     public void PlayGame()
     {
-        SceneManager.LoadScene("BossHogScene");
+        SceneManager.LoadScene(LoadScene);
     }
 }
