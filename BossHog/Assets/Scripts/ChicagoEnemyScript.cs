@@ -11,11 +11,15 @@ public class ChicagoEnemyScript : MonoBehaviour
 
     private float reloadTime = 50;
     private float reloadTimer = 101;
+
+    private float reactTime = 0f;
+    private float reactTimer = 0f;
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
+        reactTime = Random.Range(0f, 3f);
     }
 
     // Update is called once per frame
@@ -37,9 +41,17 @@ public class ChicagoEnemyScript : MonoBehaviour
             case "backwards":
                 speed = Mathf.Lerp(0.03f, 0.2f, (Mathf.Clamp(Mathf.Abs(transform.position.z - (playerZ + 5.0f)), 0.0f, 14.0f) / 14.0f));
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
-                if(transform.position.z > playerZ + 5.0f)
+                if (transform.position.z > playerZ + 5.0f)
                 {
-                    behavior = "forwards";
+                    if (reactTimer > reactTime)
+                    {
+                        behavior = "forwards";
+                        reactTimer = 0;
+                    }
+                    else
+                    {
+                        reactTimer += 0.1f;
+                    }
                 }
                 break;
             case "forwards":
@@ -47,7 +59,15 @@ public class ChicagoEnemyScript : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
                 if (transform.position.z < playerZ - 5.0f)
                 {
-                    behavior = "backwards";
+                    if (reactTimer > reactTime)
+                    {
+                        behavior = "backwards";
+                        reactTimer = 0;
+                    }
+                    else
+                    {
+                        reactTimer += 0.1f;
+                    }
                 }
                 break;
         }
