@@ -7,6 +7,8 @@ public class MultiBulletBehavior : MonoBehaviour
     // Defines what kind of bullet is being shot
     public GameObject bulletType;
 
+    public Collider parent_collide;
+
     // Defines the spread of the bullets and how many can be shot
     public int splitAmount;
     public float splitMaxRange;
@@ -27,7 +29,8 @@ public class MultiBulletBehavior : MonoBehaviour
             Quaternion spawnRotation = Quaternion.Euler(transform.eulerAngles.x, baseYRotation + ((i + 0.5f) * spawnGap), transform.eulerAngles.z);
 
             // Create the bullets
-            Instantiate(bulletType, transform.position, spawnRotation);
+            GameObject bullet = Instantiate(bulletType, transform.position, spawnRotation);
+            Physics.IgnoreCollision(bullet.GetComponent<Collider>(), parent_collide);
         }
 
         // Destroy the object

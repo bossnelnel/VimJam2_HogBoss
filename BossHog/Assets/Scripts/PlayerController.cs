@@ -141,7 +141,14 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // Create a bullet at the current positon with the new rotation value
-                Instantiate(bulletType, pos, rot);
+                GameObject bullet = Instantiate(bulletType, pos, rot);
+                Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
+                if(bullet.GetComponent<MultiBulletBehavior>())
+                {
+                    MultiBulletBehavior split_bullet = bullet.GetComponent<MultiBulletBehavior>();
+                    split_bullet.parent_collide = GetComponent<Collider>();
+                }
 
                 //Set the reload timer back to zero to count back up from
                 loadTimer = 0;

@@ -6,6 +6,7 @@ public class BulletBehavior : MonoBehaviour
 {
     public float bulletSpeed;
     private float lifeTick;
+    public float amount;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,12 @@ public class BulletBehavior : MonoBehaviour
     {
         // Kills the game object in 2 seconds after loading the object
         Destroy(gameObject, 2);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Health collision_health = other.gameObject.GetComponent<Health>();
+        collision_health.DamageHealth(amount);
+        Destroy(gameObject);
     }
 }
