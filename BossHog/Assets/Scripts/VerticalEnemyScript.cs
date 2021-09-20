@@ -68,6 +68,11 @@ public class VerticalEnemyScript : MonoBehaviour
                     MultiBulletBehavior split_bullet = bullet.GetComponent<MultiBulletBehavior>();
                     split_bullet.parent_collide = GetComponent<Collider>();
                 }
+                else if (bullet.GetComponent<PulseBulletBehavior>())
+                {
+                    PulseBulletBehavior split_bullet = bullet.GetComponent<PulseBulletBehavior>();
+                    split_bullet.parent_collide = gameObject;
+                }
 
                 reloadTimer = 0;
             }
