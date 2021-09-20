@@ -235,14 +235,5 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        HealthBarController h_bar = HealthBar.GetComponent<HealthBarController>();
-        float val = h_bar.GetHealthBarValue();
-        //Debug.Log(val);
-
-        if (Input.GetKeyDown("space"))
-        {
-            h_bar.SetHealthBarValue(val - 0.1f);
-            Debug.Log(val);
-        }
     }
 }
