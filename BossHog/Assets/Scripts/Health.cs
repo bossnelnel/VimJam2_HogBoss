@@ -48,6 +48,7 @@ public class Health : MonoBehaviour
                             break;
                     }
                 }
+                FindObjectOfType<AudioManager>().Play("Cow_Death");
                 Destroy(gameObject);
             } 
             else
@@ -60,6 +61,7 @@ public class Health : MonoBehaviour
         {
             Debug.Log("DOING IT");
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.5f);
+            
         }
     }
 

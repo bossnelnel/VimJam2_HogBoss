@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
             // If the player is pressing either of the fire buttons, attempt to shoot
             if (horizFireInput != 0 || vertFireInput != 0)
             {
+                FindObjectOfType<AudioManager>().Play("Shoot");
                 // Store the rotation and the position of the player
                 Vector3 pos = transform.position;
                 Quaternion rot = Quaternion.identity;
