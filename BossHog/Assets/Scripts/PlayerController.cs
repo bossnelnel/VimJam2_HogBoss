@@ -38,6 +38,18 @@ public class PlayerController : MonoBehaviour
     private GameObject headMesh;
     private GameObject motorcycleMesh;
 
+    #region Arms
+    /*
+    private GameObject armLeftMesh;
+    private GameObject armRightMesh;
+
+    private GameObject gunMesh;
+
+    private Vector3[,] armPositions = new Vector3[2, 5];
+    private Quaternion[,] armRotations = new Quaternion[2, 5];
+    */
+    #endregion
+
     //use for healthbar reference
     public GameObject HealthBar;
 
@@ -47,6 +59,54 @@ public class PlayerController : MonoBehaviour
     {
         headMesh = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(2).gameObject;
         motorcycleMesh = this.gameObject.transform.GetChild(0).gameObject;
+
+        #region Arms
+        /*
+        armLeftMesh = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(0).gameObject;
+        armRightMesh = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(1).gameObject;
+
+        
+        #region Left Arm
+
+        //armPositions[0,0] = new Vector3(-0.0105f, 0.0128f, -0.0006f);
+        armRotations[0,0] = Quaternion.Euler(-81.319f, -23.513f + 180.0f, 115.36f);
+
+        //armPositions[0,1] = new Vector3(-0.01136f, 0.01085f, 0.00722f);
+        armRotations[0,1] = Quaternion.Euler(-6.066f, 52.06f + 180.0f, 98.411f);
+
+        //armPositions[0,2] = new Vector3(-0.00852f, 0.01082f, 0.01089f);
+        armRotations[0,2] = Quaternion.Euler(-8.189f, 80.606f + 180.0f, 98.478f);
+
+        //armPositions[0,3] = armPositions[0,2];
+        armRotations[0,3] = armRotations[0,2];
+
+        //armPositions[0,4] = armPositions[0,2];
+        armRotations[0,4] = armRotations[0,2];
+
+        #endregion
+
+        #region Right Arm
+
+        //armPositions[1,0] = new Vector3(0.00852f, 0.00687f, 0.01176f);
+        armRotations[1,0] = Quaternion.Euler(-21.691f, -82.648f + 180.0f, -81.678f);
+
+        //armPositions[1,1] = armPositions[1,0];
+        armRotations[1,1] = armRotations[1,0];
+
+        //armPositions[1,2] = armPositions[1,0];
+        armRotations[1,2] = armRotations[1,0];
+
+        //armPositions[1,3] = new Vector3(0.0111f, 0.0088f, 0.0042f);
+        armRotations[1,3] = Quaternion.Euler(-48.877f, -44.537f + 180.0f, -77.827f);
+
+        //armPositions[1,4] = new Vector3(0.01107f, 0.01085f, -0.00089f);
+        armRotations[1,4] = Quaternion.Euler(-67.137f, -14.611f + 180.0f, -82.4f);
+
+        #endregion Right Arm
+
+        UnityEngine.Debug.Log(transform.position - armRightMesh.transform.position);
+        */
+        #endregion
     }
 
     void FixedUpdate()
@@ -105,6 +165,18 @@ public class PlayerController : MonoBehaviour
         // Apply the turnCurrent value to the rotation of the player meshes to display
         motorcycleMesh.transform.rotation = Quaternion.Euler(0.0f, 0.0f, turnCurrent);
 
+        #endregion
+
+        #region Arms
+        /*
+        int arm_angle = (int)(2.0f + (-horizFireInput * 2.0f) + (vertFireInput * Mathf.Sign(horizFireInput) * Mathf.Abs(horizFireInput)));
+
+        //armLeftMesh.transform.position = transform.position + armPositions[0,arm_angle];
+        armLeftMesh.transform.rotation = armRotations[0, arm_angle] * Quaternion.Inverse(motorcycleMesh.transform.rotation);
+
+        //armRightMesh.transform.position = transform.position + armPositions[1, arm_angle];
+        armRightMesh.transform.rotation = armRotations[1, arm_angle] * Quaternion.Inverse(motorcycleMesh.transform.rotation);
+        */
         #endregion
 
         #endregion
