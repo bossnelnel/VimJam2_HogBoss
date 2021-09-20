@@ -40,6 +40,7 @@ public class GameManagerScript : MonoBehaviour
     public float spawnDelay = 300f;
     private float spawnTimer = 0f;
 
+   
     public bool gameOver = false;
     //private float spawnPercentage = 100f;
 
@@ -47,6 +48,7 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         environment_Ref = GameObject.FindGameObjectsWithTag("Environment")[0];
+        
     }
     
     void UpdateEnemyCt()
@@ -184,7 +186,8 @@ public class GameManagerScript : MonoBehaviour
 
         if (gameOver)
         {
-            if(environment_Ref.GetComponent<MoveEnvironment>().speed > 0)
+           
+            if (environment_Ref.GetComponent<MoveEnvironment>().speed > 0)
             {
                 environment_Ref.GetComponent<MoveEnvironment>().speed -= 0.5f;
             }
