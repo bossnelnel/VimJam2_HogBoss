@@ -59,7 +59,16 @@ public class VerticalEnemyScript : MonoBehaviour
             if (transform.position.x < playerX + 2.0f && transform.position.x > playerX - 2.0f && reloadTimer > reloadTime)
             {
                 bullet_rot = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-                Instantiate(bulletType, bullet_pos, bullet_rot);
+                GameObject bullet = Instantiate(bulletType, bullet_pos, bullet_rot);
+
+                Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
+                if (bullet.GetComponent<MultiBulletBehavior>())
+                {
+                    MultiBulletBehavior split_bullet = bullet.GetComponent<MultiBulletBehavior>();
+                    split_bullet.parent_collide = GetComponent<Collider>();
+                }
+
                 reloadTimer = 0;
             }
         }

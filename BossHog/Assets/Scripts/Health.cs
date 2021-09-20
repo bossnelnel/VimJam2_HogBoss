@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float health;
+    private GameObject controller;
 
     public void DamageHealth(float amount)
     {
@@ -12,6 +13,8 @@ public class Health : MonoBehaviour
 
         if(health <= 0)
         {
+            GameObject controller = GameObject.FindGameObjectsWithTag("GameController")[0];
+            controller.GetComponent<GameManagerScript>().cowScore += 50;
             Destroy(gameObject);
         }
     }
