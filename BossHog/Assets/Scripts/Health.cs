@@ -27,4 +27,9 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetHealth(float amount)
+    {
+        health = amount;
+    }
 }

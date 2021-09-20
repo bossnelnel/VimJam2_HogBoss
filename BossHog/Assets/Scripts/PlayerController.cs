@@ -241,4 +241,9 @@ public class PlayerController : MonoBehaviour
         #endregion
 
     }
+
+    public void SetAmmo(GameObject ammo)
+    {
+        bulletType = ammo;
+    }
 }
