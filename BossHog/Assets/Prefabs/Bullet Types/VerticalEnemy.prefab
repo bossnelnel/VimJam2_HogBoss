@@ -61,6 +61,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  HealthBar: {fileID: 0}
+  toolbox_Ref: {fileID: 5632602418649179579, guid: f1411266e735ef648ad29337dbeca4c1, type: 3}
+  corn_Ref: {fileID: 2523609731842051906, guid: 8f94b7ffa0ba8354e973347aa8acf889, type: 3}
+  pea_Ref: {fileID: 3742268278348688196, guid: acd118b2324844e42abced2ae1458556, type: 3}
+  powerupSpawnChance: 10
 --- !u!54 &5314542507061120641
 Rigidbody:
   m_ObjectHideFlags: 0

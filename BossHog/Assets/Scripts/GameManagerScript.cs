@@ -8,6 +8,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject appleRef;
     public GameObject cornRef;
     public GameObject peaRef;
+    private GameObject environment_Ref;
 
     public GameObject chi_enemy_Ref;
     public GameObject vert_enemy_Ref;
@@ -38,12 +39,14 @@ public class GameManagerScript : MonoBehaviour
 
     public float spawnDelay = 300f;
     private float spawnTimer = 0f;
+
+    public bool gameOver = false;
     //private float spawnPercentage = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        environment_Ref = GameObject.FindGameObjectsWithTag("Environment")[0];
     }
     
     void UpdateEnemyCt()
@@ -136,7 +139,7 @@ public class GameManagerScript : MonoBehaviour
 
         //change level based on score
         scoreTimer += Time.deltaTime;
-        if(scoreTimer > .5f)
+        if(scoreTimer > .5f && !gameOver)
         {
             timeScore++;
             scoreTimer = 0;
@@ -166,6 +169,7 @@ public class GameManagerScript : MonoBehaviour
                 {
                     difficulty_level = 4;
                     enemyLimit = 2;
+                    spawnDelay = 200f;
                 }
                 break;
             case 4:
@@ -173,9 +177,19 @@ public class GameManagerScript : MonoBehaviour
                 {
                     difficulty_level = 5;
                     enemyLimit = 3;
+                    spawnDelay = 100f;
                 }
                 break;
         }
+
+        if (gameOver)
+        {
+            if(environment_Ref.GetComponent<MoveEnvironment>().speed > 0)
+            {
+                environment_Ref.GetComponent<MoveEnvironment>().speed -= 0.5f;
+            }
+        }
+
     }
 
 }

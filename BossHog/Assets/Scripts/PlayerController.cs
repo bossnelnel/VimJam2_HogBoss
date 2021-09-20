@@ -128,14 +128,21 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Player Movement
+        GameObject controller = GameObject.FindGameObjectsWithTag("GameController")[0];
+        if (controller.GetComponent<GameManagerScript>().gameOver == true)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.5f);
+        }
+        else
+        {
+            //Left and Right movement on the 2D plane (clamps the new x-value between the left and right bounds of the map)
+            float x_pos = Mathf.Clamp(transform.position.x + (speed * -horizontalInput * Time.deltaTime), rightBound, leftBound);
+            //Up and down movement on the 2D plane (clamps the new z-value between the top and bottom bounds of the map)
+            float z_pos = Mathf.Clamp(transform.position.z + (speed * -verticalInput * Time.deltaTime), topBound, bottomBound);
 
-        //Left and Right movement on the 2D plane (clamps the new x-value between the left and right bounds of the map)
-        float x_pos = Mathf.Clamp(transform.position.x + (speed * -horizontalInput * Time.deltaTime), rightBound, leftBound);
-        //Up and down movement on the 2D plane (clamps the new z-value between the top and bottom bounds of the map)
-        float z_pos = Mathf.Clamp(transform.position.z + (speed * -verticalInput * Time.deltaTime), topBound, bottomBound);
-
-        //Creates a new Vec3 to define the player's new, updated position (a set position, not relative)
-        transform.position = new Vector3(x_pos, transform.position.y, z_pos);
+            //Creates a new Vec3 to define the player's new, updated position (a set position, not relative)
+            transform.position = new Vector3(x_pos, transform.position.y, z_pos);
+        }
 
         #endregion
 

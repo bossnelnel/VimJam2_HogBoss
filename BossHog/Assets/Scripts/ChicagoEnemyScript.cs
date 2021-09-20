@@ -70,6 +70,9 @@ public class ChicagoEnemyScript : MonoBehaviour
                     }
                 }
                 break;
+            case "leave":
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.2f);
+                break;
         }
 
         Vector3 bullet_pos = transform.position;
@@ -100,5 +103,11 @@ public class ChicagoEnemyScript : MonoBehaviour
         }
 
         reloadTimer++;
+
+        GameObject controller = GameObject.FindGameObjectsWithTag("GameController")[0];
+        if (controller.GetComponent<GameManagerScript>().gameOver == true)
+        {
+            behavior = "leave";
+        }
     }
 }
