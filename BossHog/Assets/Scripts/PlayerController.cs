@@ -221,6 +221,11 @@ public class PlayerController : MonoBehaviour
                     MultiBulletBehavior split_bullet = bullet.GetComponent<MultiBulletBehavior>();
                     split_bullet.parent_collide = GetComponent<Collider>();
                 }
+                else if(bullet.GetComponent<PulseBulletBehavior>())
+                {
+                    PulseBulletBehavior split_bullet = bullet.GetComponent<PulseBulletBehavior>();
+                    split_bullet.parent_collide = gameObject;
+                }
 
                 //Set the reload timer back to zero to count back up from
                 loadTimer = 0;
