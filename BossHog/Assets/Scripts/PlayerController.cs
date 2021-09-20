@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("Level");
+
         headMesh = this.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetChild(2).gameObject;
         motorcycleMesh = this.gameObject.transform.GetChild(0).gameObject;
 
