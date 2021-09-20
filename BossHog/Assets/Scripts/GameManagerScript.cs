@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public GameObject appleRef;
     public GameObject cornRef;
+    public GameObject peaRef;
 
     public GameObject chi_enemy_Ref;
     public GameObject vert_enemy_Ref;
@@ -37,7 +38,7 @@ public class GameManagerScript : MonoBehaviour
 
     public float spawnDelay = 300f;
     private float spawnTimer = 0f;
-    private float spawnPercentage = 100f;
+    //private float spawnPercentage = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -66,13 +67,21 @@ public class GameManagerScript : MonoBehaviour
     {
         if(difficulty_level > 2)
         {
-            if(Random.Range(1,3) == 1)
+            int bulletType = Random.Range(1, 4);
+            switch (bulletType)
             {
-                return appleRef;
-            }
-            else
-            {
-                return cornRef;
+                case 1:
+                    return appleRef;
+                    break;
+                case 2:
+                    return cornRef;
+                    break;
+                case 3:
+                    return peaRef;
+                    break;
+                default:
+                    return appleRef;
+                    break;
             }
         } 
         else
