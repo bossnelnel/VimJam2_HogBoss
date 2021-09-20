@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 15
+  amount: 1
 --- !u!65 &5329458880051591824
 BoxCollider:
   m_ObjectHideFlags: 0

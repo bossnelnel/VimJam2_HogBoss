@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2742829787441449770}
   - component: {fileID: -1405079618093287859}
+  - component: {fileID: 5296436356882418674}
   m_Layer: 0
   m_Name: Corn Bullet Split
   m_TagString: Untagged
@@ -46,3 +47,16 @@ MonoBehaviour:
   bulletType: {fileID: 7568063253328881655, guid: 96ad9a26623a78c43ad6aded68e5904f, type: 3}
   splitAmount: 3
   splitMaxRange: 75
+--- !u!135 &5296436356882418674
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6945254898979015577}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

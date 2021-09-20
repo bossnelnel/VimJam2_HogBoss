@@ -80,7 +80,16 @@ public class ChicagoEnemyScript : MonoBehaviour
             {
                 float playerX = player.transform.position.x;
                 bullet_rot = Quaternion.Euler(0.0f, -90.0f * Mathf.Sign(transform.position.x - playerX), 0.0f);
-                Instantiate(bulletType, bullet_pos, bullet_rot);
+
+                GameObject bullet = Instantiate(bulletType, bullet_pos, bullet_rot);
+                Physics.IgnoreCollision(bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
+                if (bullet.GetComponent<MultiBulletBehavior>())
+                {
+                    MultiBulletBehavior split_bullet = bullet.GetComponent<MultiBulletBehavior>();
+                    split_bullet.parent_collide = GetComponent<Collider>();
+                }
+
                 reloadTimer = 0;
             }
         }

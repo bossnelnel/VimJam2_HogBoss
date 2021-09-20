@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 30
+  amount: 1
 --- !u!1 &9103513329011234423
 GameObject:
   m_ObjectHideFlags: 0
