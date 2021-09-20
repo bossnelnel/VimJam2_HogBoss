@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject chi_enemy_Ref;
     public GameObject vert_enemy_Ref;
+    public Text score_Ref;
 
     private int difficulty_level = 1;
     
@@ -131,7 +133,8 @@ public class GameManagerScript : MonoBehaviour
             scoreTimer = 0;
         }
         score = timeScore + cowScore;
-        Debug.Log(score);
+        score_Ref.text = score.ToString();
+        //scoreText.text = score;
 
         switch (difficulty_level)
         {
