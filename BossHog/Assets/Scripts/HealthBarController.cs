@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     private static Image HealthBarImage;
+    public float hehe = 69f;
 
-    public static void SetHealthBarValue(float value)
+    public void SetHealthBarValue(float value)
     {
         HealthBarImage.fillAmount = value;
         if (HealthBarImage.fillAmount < 0.2f)
@@ -24,7 +25,7 @@ public class HealthBarController : MonoBehaviour
         }
     }
 
-    public static float GetHealthBarValue()
+    public float GetHealthBarValue()
     {
         return HealthBarImage.fillAmount;
     }
