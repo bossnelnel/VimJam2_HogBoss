@@ -250,4 +250,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log(val);
         }
     }
+
+    public void SetAmmo(GameObject ammo)
+    {
+        bulletType = ammo;
+    }
 }
